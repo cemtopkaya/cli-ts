@@ -1,4 +1,4 @@
-import yargs, { command, CommandModule } from "yargs"
+import yargs, { command, CommandModule } from 'yargs'
 // import commonOptions from "../commonOptions"
 
 export class SayCommand {
@@ -19,17 +19,18 @@ export class SayCommand {
     }
   } as { [key: string]: yargs.Options }
 
-  get cmd(): yargs.Argv<{}> {
+  get cmd (): yargs.Argv<{}> {
     return command(this.module)
   }
 
-  handler(argv: any) {
+  handler (argv: any) {
+    console.log('sayyyy HANDLER ')
     const { prefix, name, surname } = argv
     const message = prefix + (name ? ' ' + name : '') + (surname ? ' ' + surname : '')
     console.log('sayyyy : ', message)
   }
 
-  constructor() {
+  constructor () {
     // this.options.cred = commonOptions.cred as yargs.Options
     // this.options.destination = commonOptions.destination as yargs.Options
     this.module = {
@@ -44,4 +45,5 @@ export class SayCommand {
       handler: this.handler
     } as CommandModule
   }
+
 }
