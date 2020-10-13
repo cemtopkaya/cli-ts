@@ -2,10 +2,22 @@
   "extends": [
     "tslint:latest",
     "tslint-config-prettier",
-
     "tslint:recommended",
     "tslint-eslint-rules",
     "tslint-microsoft-contrib",
     "tslint-consistent-codestyle"
-  ]
+  ],
+  "rules": {
+    "export-name": [false, { "ignore-case": true, "allow": ["myChartOptions"] }],
+    "completed-docs": [false, "enums", "functions", "methods"],
+    "import/prefer-default-export": "off",
+    "no-default-export": false,
+    "no-reserved-keywords": false,
+    "trailing-comma": false,
+    "newline-per-chained-call": [true, { "ignoreChainWithDepth": 2 ,    "max-calls-per-line": 2  }],
+    "typedef": [true, "call-signature", "parameter", "member-variable-declaration"],
+    "no-any":false,
+    "no-console":false,
+    "no-unsafe-any":false
+  }
 }

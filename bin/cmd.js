@@ -4,11 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var yargs_1 = __importDefault(require("yargs"));
+var chalk_1 = __importDefault(require("chalk"));
 // Ortak options (cred, destination)
 // let a = commonOptions as { [key: string]: yargs.Options; }
-var say_1 = require("../lib/commands/say");
-var chalk_1 = __importDefault(require("chalk"));
 var general_1 = require("../lib/commands/general");
+var say_1 = require("../lib/commands/say");
 /**
  * import yargs from "yargs";
  * modulu her cagirildigi yerde (farkli .ts dosyalarinda) islem gorup
@@ -73,6 +73,5 @@ yargs_1.default
     .recommendCommands()
     .strict()
     .epilog((homepage ? "| Documentation: " + homepage + "\n" : '') +
-    (version ? "| Version: " + version : ''))
-    .argv;
+    (version ? "| Version: " + version : '')).argv;
 //# sourceMappingURL=cmd.js.map
