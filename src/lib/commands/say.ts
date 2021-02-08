@@ -3,7 +3,7 @@ import yargs, { command, CommandModule } from 'yargs';
 
 export class SayCommand {
 
-    public module: yargs.CommandModule<{}>;
+    public module: yargs.CommandModule;
     public options: { [key: string]: yargs.Options } = {
         name: {
             alias: 'n',
@@ -24,9 +24,11 @@ export class SayCommand {
         // this.options.destination = commonOptions.destination as yargs.Options
         this.module = {
             command: 'say <action>',
-            describe: 'Printssss: <action> name surname',
-            builder: (y) =>
-                y.options(this.options)
+            describe: 'Prints name and surname',
+            builder: (y) => {
+                console.log('------>');
+
+                return y.options(this.options)
                     .check((k: any) => {
                         console.log('ppppp: ', k);
                         if (k.name.length < 3) {
@@ -34,7 +36,8 @@ export class SayCommand {
                         }
 
                         return true;
-                    }),
+                    });
+            },
             handler: this.handler
         };
     }
@@ -50,3 +53,56 @@ export class SayCommand {
     }
 
 }
+
+export const module1 = {
+    command: 'say <source> [proxy]',
+    describe: 'make a get HTTP request',
+    builder: {
+        source: {
+            default: 'cool'
+        },
+        batman: {
+            default: 'sad',
+            demand: true
+        }
+    },
+    handler: (argv: any) => {
+        // do something with argv.
+        console.log('>>>> ', argv);
+    }
+};
+
+export const module2 = {
+    command: 'say <source> [proxy]',
+    describe: 'make a get HTTP request',
+    builder: (y: yargs.Argv) => {
+        console.log('->----->');
+
+        return y.options({
+            name: {
+                alias: 'n',
+                describe: 'Pass the name',
+                type: 'string',
+                demand: true
+            },
+            surname: {
+                alias: 's',
+                type: 'string',
+                describe: 'Pass the surname',
+                demand: false
+            }
+        })
+            .check((k: any) => {
+                console.log('ppppp: ', k);
+                if (k.name.length < 3) {
+                    throw new Error('3 karakterden az isim mi olur yahu?');
+                }
+
+                return true;
+            });
+    },
+    handler: function (argv: any) {
+        // do something with argv.
+        console.log('>>>> ', argv);
+    }
+};

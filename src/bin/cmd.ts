@@ -1,12 +1,27 @@
-import yargs from 'yargs';
 import chalk from 'chalk';
+import yargs from 'yargs';
 import { setCredDest } from '../lib/commonOptions';
 
 // Ortak options (cred, destination)
 // let a = commonOptions as { [key: string]: yargs.Options; }
 
+
+
+
+
+import { module2, SayCommand, module1 } from 'commands/say';
+
+
+
+
+// tslint:disable-next-line: no-submodule-imports
+// import { module2 } from 'commands/say';
+
+
+
+
+
 import { GeneralCommand } from '../lib/commands/general';
-import { SayCommand } from '../lib/commands/say';
 
 /**
  * import yargs from "yargs";
@@ -31,16 +46,15 @@ import { SayCommand } from '../lib/commands/say';
 // import { commands } from "../lib/commands";
 // commands.map((cmd:any) => cmd.argv);
 
-// tslint:disable-next-line: one-variable-per-declaration
-const homepage = 'http://www.ulakhaberlesme.com.tr',
-  version = '1.0';
+const homepage = 'http://www.ulakhaberlesme.com.tr';
+const version = '1.0';
 
 // setCredDest()
 // tslint:disable-next-line: no-unused-expression
 yargs
   .scriptName('cli-cnnrf')
   .help()
-  .version()
+  .version(version)
   .usage('Usage: $0 <varlik> <komut> -c [string] -d [string]')
   .demandCommand(2, chalk.red('You must provide a valid command!'))
   .options({
@@ -69,7 +83,8 @@ yargs
   //   return true
   // })
   // .command('sus <hadi>','sus dedik beaa')
-  .command(new SayCommand().module)
+  // .command(new SayCommand().module)
+  .command(module2)
   .command(new GeneralCommand().module)
   // .example('$0 say [name] [surname]', 'Ad ve soyadini soyleyecekk')
   // .example('$0 general <action>', 'General bilgilerini işler')
@@ -77,6 +92,6 @@ yargs
   .recommendCommands()
   .strict()
   .epilog(
-    (homepage ? `| Documentation: ${homepage}\n` : '') +
-    (version ? `| Version: ${version}` : '')
+    (!!homepage ? `| Documentation: ${homepage}\n` : '') +
+    (!!version ? `| Version: ${version}` : '')
   ).argv;

@@ -14,10 +14,15 @@
     "no-default-export": false,
     "no-reserved-keywords": false,
     "trailing-comma": false,
-    "newline-per-chained-call": [true, { "ignoreChainWithDepth": 2 ,    "max-calls-per-line": 2  }],
+    "newline-per-chained-call": [true, { "ignoreChainWithDepth": 2, "max-calls-per-line": 2 }],
     "typedef": [true, "call-signature", "parameter", "member-variable-declaration"],
-    "no-any":false,
-    "no-console":false,
-    "no-unsafe-any":false
+    "no-any": false,
+    "no-console": false,
+    "no-unsafe-any": false,
+    "linebreak-style": false,
+    "strict-boolean-expressions": [false, "allow-boolean-or-undefined"],
+    
+
+    "no-implicit-dependencies": [false]
   }
 }

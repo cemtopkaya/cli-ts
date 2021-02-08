@@ -3,12 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var yargs_1 = __importDefault(require("yargs"));
 var chalk_1 = __importDefault(require("chalk"));
+var yargs_1 = __importDefault(require("yargs"));
 // Ortak options (cred, destination)
 // let a = commonOptions as { [key: string]: yargs.Options; }
+var say_1 = require("commands/say");
+// tslint:disable-next-line: no-submodule-imports
+// import { module2 } from 'commands/say';
 var general_1 = require("../lib/commands/general");
-var say_1 = require("../lib/commands/say");
 /**
  * import yargs from "yargs";
  * modulu her cagirildigi yerde (farkli .ts dosyalarinda) islem gorup
@@ -31,14 +33,14 @@ var say_1 = require("../lib/commands/say");
  */
 // import { commands } from "../lib/commands";
 // commands.map((cmd:any) => cmd.argv);
-// tslint:disable-next-line: one-variable-per-declaration
-var homepage = 'http://www.ulakhaberlesme.com.tr', version = '1.0';
+var homepage = 'http://www.ulakhaberlesme.com.tr';
+var version = '1.0';
 // setCredDest()
 // tslint:disable-next-line: no-unused-expression
 yargs_1.default
     .scriptName('cli-cnnrf')
     .help()
-    .version()
+    .version(version)
     .usage('Usage: $0 <varlik> <komut> -c [string] -d [string]')
     .demandCommand(2, chalk_1.default.red('You must provide a valid command!'))
     .options({
@@ -66,12 +68,13 @@ yargs_1.default
     //   return true
     // })
     // .command('sus <hadi>','sus dedik beaa')
-    .command(new say_1.SayCommand().module)
+    // .command(new SayCommand().module)
+    .command(say_1.module2)
     .command(new general_1.GeneralCommand().module)
     // .example('$0 say [name] [surname]', 'Ad ve soyadini soyleyecekk')
     // .example('$0 general <action>', 'General bilgilerini işler')
     .recommendCommands()
     .strict()
-    .epilog((homepage ? "| Documentation: " + homepage + "\n" : '') +
-    (version ? "| Version: " + version : '')).argv;
+    .epilog((!!homepage ? "| Documentation: " + homepage + "\n" : '') +
+    (!!version ? "| Version: " + version : '')).argv;
 //# sourceMappingURL=cmd.js.map
